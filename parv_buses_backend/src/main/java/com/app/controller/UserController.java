@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.ApiResponse;
+import com.app.dto.LoggedInUserData;
+import com.app.dto.LoginDto;
 import com.app.entities.User;
 import com.app.service.UserService;
 
@@ -23,6 +25,14 @@ public class UserController {
 		ApiResponse resp=userService.signUpUser(user);
 		
 		return ResponseEntity.ok(resp);
+	}
+	
+	@PostMapping("/login")
+	public LoggedInUserData loginUser(@RequestBody LoginDto ld){
+		
+		LoggedInUserData resp = userService.loginUser(ld);
+		
+		return resp;
 	}
 	
 

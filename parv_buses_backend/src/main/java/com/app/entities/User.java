@@ -23,7 +23,7 @@ public class User extends Base {
 	private String mobile;
 	private String email;
 	private int age;
-	private char gender;
+	private String gender;
 	private String password;
 	
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
