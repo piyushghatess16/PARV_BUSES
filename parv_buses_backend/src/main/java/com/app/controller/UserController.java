@@ -18,8 +18,8 @@ import com.app.service.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	@PostMapping("/signup")
 	
+	@PostMapping("/signup")
 	public ResponseEntity<?> signUpUser(@RequestBody User user)
 	{
 		ApiResponse resp=userService.signUpUser(user);
@@ -29,9 +29,7 @@ public class UserController {
 	
 	@PostMapping("/login")
 	public LoggedInUserData loginUser(@RequestBody LoginDto ld){
-		
 		LoggedInUserData resp = userService.loginUser(ld);
-		
 		return resp;
 	}
 	

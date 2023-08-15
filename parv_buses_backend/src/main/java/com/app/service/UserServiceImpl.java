@@ -12,6 +12,7 @@ import com.app.dao.UserDao;
 import com.app.dto.ApiResponse;
 import com.app.dto.LoggedInUserData;
 import com.app.dto.LoginDto;
+import com.app.entities.Passenger;
 import com.app.entities.User;
 
 @Service
@@ -36,6 +37,13 @@ public class UserServiceImpl implements UserService {
 		User u = userDao.findByEmailAndPassword(ld.getEmail(), ld.getPassword()).orElseThrow(()-> new RuntimeException("User Not Found.."));
 		
 		return mapper.map(u, LoggedInUserData.class);
+	}
+
+	@Override
+	public String addPassenger(Passenger p, long id) {
+		User u = userDao.findById(id).orElseThrow(()->new RuntimeException("User Not Found"));
+		u.addPassenger(p);
+		return "Passenger added";
 	}
 	
 
