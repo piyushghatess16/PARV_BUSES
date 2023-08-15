@@ -12,6 +12,7 @@ import com.app.dao.UserDao;
 import com.app.dto.ApiResponse;
 import com.app.dto.LoggedInUserData;
 import com.app.dto.LoginDto;
+import com.app.dto.UpdateUserDto;
 import com.app.entities.Passenger;
 import com.app.entities.User;
 
@@ -44,6 +45,19 @@ public class UserServiceImpl implements UserService {
 		User u = userDao.findById(id).orElseThrow(()->new RuntimeException("User Not Found"));
 		u.addPassenger(p);
 		return "Passenger added";
+	}
+
+	@Override
+	public UpdateUserDto updateEmpDetails(UpdateUserDto user,long userid) {
+		User u=userDao.findById(userid).orElseThrow(() -> new RuntimeException("User Not Found"));
+		u.setAge(user.getAge());
+		u.setEmail(user.getEmail());
+		u.setFirstname(user.getFirstname());
+		u.setLastname(user.getLastname());
+		u.setGender(user.getGender());
+		u.setMobile(user.getMobile());
+		User updatedUser=userDao.save(u);
+		return mapper.map(u, UpdateUserDto.class);
 	}
 	
 
