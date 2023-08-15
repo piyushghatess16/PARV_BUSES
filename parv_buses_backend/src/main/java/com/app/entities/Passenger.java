@@ -1,6 +1,7 @@
 package com.app.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
