@@ -1,0 +1,86 @@
+package com.app.service;
+
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.NotReadablePropertyException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.app.custom_exceptions.ResourceNotFoundException;
+import com.app.dao.EmployeeDao;
+import com.app.dto.AuthRequest;
+import com.app.dto.AuthResp;
+import com.app.dto.SignupRequest;
+import com.app.dto.SignupResponse;
+import com.app.entities.Employee;
+
+@Service
+@Transactional
+public class EmployeeServiceImpl implements EmployeeService {
+	// dep : dao layer i/f
+	@Autowired
+	private EmployeeDao empDao;
+
+	@Autowired
+	private ModelMapper mapper;
+
+	@Override
+	public List<Employee> getAllEmps() {
+		return empDao.findAll();
+	}
+
+//MODIFIED to add DTO pattern
+	@Override
+	public SignupResponse addEmpDetails(SignupRequest request) {
+		System.out.println("request  " + request);
+		//Since we need entity for persistence , map , dto ----> Entity --> then invoke save
+		Employee persistentEmp = empDao.save(mapper.map(request, Employee.class));
+		//If we send directly entity to REST clnt , it will contain , 
+		//un necessary fields(eg : password , dept , address, projects...) , 
+		//so as a standard suggestion , map entity --> dto		
+		return mapper.map(persistentEmp, SignupResponse.class);
+	}// insert
+
+	@Override
+	public Employee getEmpDetails(Long empId) {
+		return empDao.findById(empId).orElseThrow(() -> new ResourceNotFoundException("Invalid Emp ID !!!!!"));
+	}
+
+	@Override
+	public Employee updateEmpDetails(Employee emp) {
+		Employee foundEmp = empDao.findById(emp.getId())
+				.orElseThrow(() -> new ResourceNotFoundException("Invalid Emp ID !!!!!"));
+		// emp exists !, foundEmp : persistent
+		return empDao.save(emp);
+	}// detached emp
+
+	@Override
+	public String deleteEmpDetails(Long empId) {
+		Employee foundEmp = empDao.findById(empId)
+				.orElseThrow(() -> new ResourceNotFoundException("Invalid Emp ID !!!!!"));
+		// emp exists !, foundEmp : persistent
+		empDao.deleteById(empId);
+		return "Emp details deleted successfully!";
+	}
+
+	@Override
+	public AuthResp singInEmployee(AuthRequest request) {
+		// invoke dao layer method for authentication
+		Employee emp = empDao.findByEmailAndPassword(request.getEmail(), request.getPassword())
+				.orElseThrow(() -> new ResourceNotFoundException("Invalid Email or Password !!!!"));
+		// => signin success , emp : persistent
+		// ModelMapper API
+		// public DestType map(Object src ,Class<DestType> cls)
+		return mapper.map(emp, AuthResp.class);
+	}
+
+	@Override
+	public List<Employee> getAllEmpNamesBySalary(double salary) {
+		// TODO Auto-generated method stub
+		return empDao.fetchEmpFullNameBySal(salary);
+	}
+	
+
+}

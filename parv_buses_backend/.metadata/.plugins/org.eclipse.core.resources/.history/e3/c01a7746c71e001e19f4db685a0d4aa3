@@ -1,0 +1,34 @@
+package com.app.service;
+
+import java.util.List;
+
+import com.app.dto.AuthRequest;
+import com.app.dto.AuthResp;
+import com.app.dto.SignupRequest;
+import com.app.dto.SignupResponse;
+import com.app.entities.Employee;
+
+public interface EmployeeService {
+//add a method to get list of all emps
+	List<Employee> getAllEmps();
+
+	// add a method to add new emp details (MODIFIED)
+	SignupResponse addEmpDetails(SignupRequest emp);// i/p : dto , with no id field 
+	
+	// add a method to get emp details by id
+
+	Employee getEmpDetails(Long empId);
+
+	// add a method to update existing emp details
+	Employee updateEmpDetails(Employee emp);// detached emp , id=non null ,existing in db
+	
+	//add a method to delete existing emp details
+	String deleteEmpDetails(Long empId);
+	
+	//add a method for signin
+	AuthResp singInEmployee(AuthRequest request);
+	
+	//add a method to test custom query method from Spring Data JPA
+	List<Employee> getAllEmpNamesBySalary(double salary);
+	
+}
