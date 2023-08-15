@@ -1,5 +1,10 @@
 package com.app.service;
 
-public class UserService {
+import com.app.dto.ApiResponse;
+import com.app.entities.User;
+
+public interface UserService {
+
+	ApiResponse signUpUser(User user);
 
 }
