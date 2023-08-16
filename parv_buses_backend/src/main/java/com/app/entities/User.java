@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
@@ -29,6 +28,7 @@ public class User extends Base {
 	
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Passenger> passengers;
+	
 	
 	//adding passenger in user account
 	public void addPassenger(Passenger p) {

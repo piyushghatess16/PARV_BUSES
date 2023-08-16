@@ -23,5 +23,8 @@ public class Passenger extends Base{
 	
 	@ManyToOne
 	private User user;
+	
+	
+	
 
 }
