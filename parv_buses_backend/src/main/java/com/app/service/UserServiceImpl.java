@@ -3,17 +3,14 @@ package com.app.service;
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
-
-import org.apache.catalina.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dao.UserDao;
 import com.app.dto.ApiResponse;
+import com.app.dto.ChangePasswordDto;
 import com.app.dto.LoggedInUserData;
 import com.app.dto.LoginDto;
-import com.app.dto.UpdateUserDto;
-import com.app.entities.Passenger;
 import com.app.entities.User;
 
 @Service
@@ -41,24 +38,19 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String addPassenger(Passenger p, long id) {
-		User u = userDao.findById(id).orElseThrow(()->new RuntimeException("User Not Found"));
-		u.addPassenger(p);
-		return "Passenger added";
-	}
+	public ApiResponse ChangePassword(ChangePasswordDto pass) {
+	User user=userDao.findByEmail(pass.getEmail());
+	
+		if(user.getPassword().equals(pass.getPassword()))
+		{
+			user.setPassword(pass.getNew_pass());
+			return new ApiResponse(" Password Changed SuccessFully");
 
-	@Override
-	public UpdateUserDto updateEmpDetails(UpdateUserDto user,long userid) {
-		User u=userDao.findById(userid).orElseThrow(() -> new RuntimeException("User Not Found"));
-		u.setAge(user.getAge());
-		u.setEmail(user.getEmail());
-		u.setFirstname(user.getFirstname());
-		u.setLastname(user.getLastname());
-		u.setGender(user.getGender());
-		u.setMobile(user.getMobile());
-		User updatedUser=userDao.save(u);
-		return mapper.map(u, UpdateUserDto.class);
-	}
+		}
+		
+			return new ApiResponse("Old Password Not Matched");
+		
 	
 
+}
 }
