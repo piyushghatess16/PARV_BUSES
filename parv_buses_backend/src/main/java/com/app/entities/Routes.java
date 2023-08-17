@@ -33,6 +33,9 @@ public class Routes extends Base{
     @OneToMany(mappedBy = "route",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<BusDetails> buses;
     
+    @OneToMany(mappedBy = "routes",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Bookings> routes;
+    
     public void addBus(BusDetails p) {
 		buses.add(p); //parent to child reln
 		p.setRoute(this);//child to parent reln
@@ -43,6 +46,18 @@ public class Routes extends Base{
 	public void removeBus(BusDetails p) {
 		buses.remove(p);
 		p.setRoute(null);
+	}
+	
+	public void addBooking(Bookings b) {
+		routes.add(b); //parent to child reln
+		b.setRoutes(this);//child to parent reln
+	}
+	
+	
+	
+	public void removeBus(Bookings b) {
+		routes.remove(b);
+		b.setRoutes(null);
 	}
 
 

@@ -29,6 +29,9 @@ public class User extends Base {
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Passenger> passengers;
 	
+	@OneToMany(mappedBy="user",cascade=CascadeType.ALL,orphanRemoval=true)
+	private List<Bookings> bookings;
+	
 	
 	//adding passenger in user account
 	public void addPassenger(Passenger p) {
@@ -42,6 +45,19 @@ public class User extends Base {
 		passengers.remove(p);
 		p.setUser(null);
 	}
+	
+	//adding Booking in user account
+		public void addBooking(Bookings p) {
+			bookings.add(p); //parent to child reln
+			p.setUser(this);//child to parent reln
+		}
+		
+		
+		//removing Booking from user account
+		public void removeBooking(Bookings p) {
+			bookings.remove(p);
+			p.setUser(null);
+		}
 	
 	
 
