@@ -20,11 +20,11 @@ public class Bookings extends Base{
 	private int end;
 	private int busNo;
 	@ManyToOne
-	private User user;
+	private User user; //User Relationship
 	@ManyToOne
-	private Passenger passenger;
+	private Passenger passenger;  //Passenger Relationship
 	@ManyToOne
-	private Routes routes;
+	private Routes routes;    //Route Relationship
 	
 	
 }
