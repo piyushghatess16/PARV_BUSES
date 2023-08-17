@@ -25,11 +25,8 @@ public class BusSeviceImpl implements BusService {
 	
 	@Override
 	public ApiResponse addBus(BusDetails abd,long routeid) {
-		
 		Routes rv= routeDao.findById(routeid).orElseThrow(()->new RuntimeException("Route not found."));
-		
 		rv.addBus(abd);
-		
 		return new ApiResponse("bus added.");
 	}
 

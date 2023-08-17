@@ -39,7 +39,7 @@ public class Routes extends Base{
 	}
 	
 	
-	//removing passenger from user account
+	//removing Bus from 
 	public void removeBus(BusDetails p) {
 		buses.remove(p);
 		p.setRoute(null);
