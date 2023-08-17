@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -29,4 +30,6 @@ public class BusDetails extends Base {
 	@OneToMany(mappedBy = "busDetails")
     private List<SeatAvailability> seatAvailabilities;
 	
+	@ManyToOne
+	private Routes route;
 }

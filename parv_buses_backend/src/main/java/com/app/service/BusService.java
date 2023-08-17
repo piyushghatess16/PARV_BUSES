@@ -10,6 +10,8 @@ import com.app.entities.BusDetails;
 
 public interface BusService {
 	
-	ApiResponse addBus(BusDetails abd);
+	ApiResponse addBus(BusDetails abd,long routeid);
+	
+	ApiResponse removeBus(int busNo);
 
 }
