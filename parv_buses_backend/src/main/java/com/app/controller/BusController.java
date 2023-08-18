@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.GetBusDto;
+import com.app.dto.SendBusDto;
 import com.app.entities.BusDetails;
 import com.app.service.BusService;
 
@@ -33,6 +37,14 @@ public class BusController {
 		
 		return ResponseEntity.ok(busService.removeBus(busNo));
 	}
+	
+	@PostMapping("/getbus")
+	public List<SendBusDto> getBus(@RequestBody  GetBusDto gbd) {
+//		System.out.println(gbd.toString());
+		
+		return busService.getBus(gbd);
+	}
+	
 	
 	
 
