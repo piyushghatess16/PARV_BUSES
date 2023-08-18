@@ -36,4 +36,11 @@ public class RouteServiceImpl implements RouteService {
 		return new ApiResponse("Route Added");
 	}
 
+	@Override
+	public boolean deleteRoute(long routeid) {
+		Routes route=routeDao.findById(routeid).orElseThrow(() ->new RuntimeException("Route Not Found"));
+		routeDao.delete(route);
+		return true;
+	}
+
 }
