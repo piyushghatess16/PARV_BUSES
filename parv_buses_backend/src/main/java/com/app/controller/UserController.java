@@ -41,7 +41,7 @@ public class UserController {
 		
 		ApiResponse res = userService.ChangePassword(pass);
 		
-		return ResponseEntity.ok(res); 
+		return ResponseEntity.ok(res);
 		
 	
 
