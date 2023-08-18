@@ -28,7 +28,7 @@ public class Passenger extends Base{
 	@ManyToOne
 	private User user;
 	
-	@OneToMany(mappedBy="user",cascade=CascadeType.ALL,orphanRemoval=true)
+	@OneToMany(mappedBy="user",cascade=CascadeType.ALL,orphanRemoval=true,fetch =FetchType.EAGER )
 	private List<Bookings> bookings;
 	
 	//adding Booking in passenger
