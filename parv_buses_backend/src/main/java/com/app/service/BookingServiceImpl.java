@@ -69,17 +69,13 @@ public class BookingServiceImpl implements BookingService {
 		b.setRoutes(r);
 		r.addBooking(b);
 		
-		
-		
-	
 		Bookings b1 = bookingDao.save(b);
-	 return new ApiResponse("Booking Succesful.");
-	 
+	    return new ApiResponse("Booking Succesful.");
 	 		
 }
 
 	@Override
-	public List<GetBookingDto> getAllBookings(long userid) {
+	public List<GetBookingDto> getAllBookings(long userid) throws RuntimeException{
 		User u = userDao.findById(userid).orElseThrow(()->new RuntimeException("User Not Found"));
 		List<Bookings> bookinglist = bookingDao.findByUser(u).orElseThrow(()->new RuntimeException("No Bookings found"));
 		
@@ -96,6 +92,7 @@ public class BookingServiceImpl implements BookingService {
 			
 			
 		}
+		
 		return bookedDtolist;
 	}
 }

@@ -62,9 +62,9 @@ public class BusSeviceImpl implements BusService {
 		
 		List<Routes> list = routeDao.findAll();
 		
-		Station from = stationDao.findById(g.getFrom()).orElseThrow(()->new RuntimeException("Station not found."));
+		Station from = stationDao.findById(g.getFrom()).orElseThrow(()->new RuntimeException("Start Station not found."));
 		
-		Station to = stationDao.findById(g.getTo()).orElseThrow(()->new RuntimeException("Station not found."));
+		Station to = stationDao.findById(g.getTo()).orElseThrow(()->new RuntimeException("Destination Station not found."));
 		
 //		list.stream().filter(e -> e.getStation_id_boarding() == from && 
 //				e.getStation_id_destination() == to ).forEach(e->System.out.println(e.getDistance()*2));
