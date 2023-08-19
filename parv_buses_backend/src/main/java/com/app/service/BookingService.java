@@ -12,5 +12,6 @@ public interface BookingService {
 	public ApiResponse createBooking(BookingsDto booking);
 	
 	List<GetBookingDto> getAllBookings(long userid);
+	public ApiResponse cancelBookings(long bookingid);
 
 }

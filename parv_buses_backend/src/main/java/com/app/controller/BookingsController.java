@@ -34,4 +34,11 @@ public class BookingsController {
     	return ResponseEntity.ok(bookingService.getAllBookings(userid));
     }
     
+   
+    @PostMapping("/cancelbooking/{bookingid}")
+    public  ApiResponse cancelBooking(@PathVariable long bookingid)
+    {
+    	return bookingService.cancelBookings(bookingid);
+    }
+    
 }

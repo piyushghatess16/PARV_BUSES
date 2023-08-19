@@ -10,16 +10,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dao.BookingsDao;
+import com.app.dao.BusDao;
 import com.app.dao.PassengerDao;
 import com.app.dao.RouteDao;
+import com.app.dao.SeatAvailabilityDao;
 import com.app.dao.StationDao;
 import com.app.dao.UserDao;
 import com.app.dto.ApiResponse;
 import com.app.dto.BookingsDto;
 import com.app.dto.GetBookingDto;
 import com.app.entities.Bookings;
+import com.app.entities.BusDetails;
 import com.app.entities.Passenger;
 import com.app.entities.Routes;
+import com.app.entities.SeatAvailability;
 import com.app.entities.Station;
 import com.app.entities.User;
 
@@ -42,6 +46,11 @@ public class BookingServiceImpl implements BookingService {
 	@Autowired
 	private StationDao stationDao;
 	
+	@Autowired
+	private BusDao busDao;
+	
+	@Autowired
+	private SeatAvailabilityDao seatAvailabilityDao;
 	@Override
 	public ApiResponse createBooking(BookingsDto booking) {
 		
@@ -94,5 +103,16 @@ public class BookingServiceImpl implements BookingService {
 		}
 		
 		return bookedDtolist;
+	}
+
+	@Override
+	public ApiResponse cancelBookings(long bookingid) {
+		Bookings b=bookingDao.findById(bookingid).orElseThrow(()-> new RuntimeException("Booking Not Found"));
+		//b.removeSeat(null); //Pending Work
+		BusDetails bus=busDao.findByBusNoAndDate(b.getBusNo(), b.getDate()).orElseThrow(()-> new RuntimeException("Bus Not Found"));
+		SeatAvailability s=seatAvailabilityDao.findByBusDetailsAndDate(bus, b.getDate());
+		s.setAvailable_seats(s.getAvailable_seats()-1);
+		bookingDao.delete(b);
+		return new ApiResponse("Booking Cancel");
 	}
 }
