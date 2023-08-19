@@ -25,11 +25,11 @@ public class SeatAllocation extends Base {
 
 	@ManyToOne
 	private Bookings booking;
-//	private int allocationId;
+
 	private int seatNo;
 	
 	@OneToOne
-	private  Bookings passengerId;
+	private  Passenger passenger;
 	private LocalDate dateOfJourney;
 	
 	

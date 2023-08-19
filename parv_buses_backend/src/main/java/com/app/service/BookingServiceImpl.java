@@ -98,10 +98,7 @@ public class BookingServiceImpl implements BookingService {
 					end.getStation_name(), p.getFirstName()+" "+p.getLastName(),booking.getDate());
 			
 			bookedDtolist.add(bookDto);
-			
-			
 		}
-		
 		return bookedDtolist;
 	}
 

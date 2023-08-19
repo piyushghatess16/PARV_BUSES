@@ -1,5 +1,11 @@
 package com.app.service;
 
-public class SeatAllocationService {
+import com.app.dto.ApiResponse;
+import com.app.dto.SeatAllocationRequestDto;
+
+public interface SeatAllocationService {
+
+	public ApiResponse allocateSeat(SeatAllocationRequestDto seat) ;
+		
 
 }
