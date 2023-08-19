@@ -1,4 +1,6 @@
 package com.app.dto;
+import java.time.LocalDate;
+
 import lombok.*;
 @Getter
 @Setter
@@ -15,6 +17,7 @@ public class BookingsDto {
 	private long passengerId;
 	private long routesId;
 	private long userId;
+	private LocalDate date;
 	
 	
 	

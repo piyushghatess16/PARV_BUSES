@@ -1,5 +1,6 @@
 package com.app.entities;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,24 +12,28 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Bookings extends Base{
 
 	
 	private int start;
 	private int end;
 	private int busNo;
+	private LocalDate date;
 	@ManyToOne
 	private User user; //User Relationship
 	@ManyToOne
 	private Passenger passenger;  //Passenger Relationship
 	@ManyToOne
 	private Routes routes;    //Route Relationship
+	
 	
 	@OneToMany(mappedBy = "booking",cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<SeatAllocation> seatlist;
