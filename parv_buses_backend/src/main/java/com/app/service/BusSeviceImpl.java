@@ -91,7 +91,7 @@ public class BusSeviceImpl implements BusService {
 			String to1 = to.getStation_name();
 			SeatAvailability seat = seatAvailabilityDao.findByBusDetails(bus);
 			int seats = seat.getAvailable_seats();
-			SendBusDto sendbusobj = new SendBusDto(from1, to1, cost, seats,duration);
+			SendBusDto sendbusobj = new SendBusDto(bus.getId(),from1, to1, cost, seats,duration);
 			sendBusDtoList.add(sendbusobj);
 		}
 		

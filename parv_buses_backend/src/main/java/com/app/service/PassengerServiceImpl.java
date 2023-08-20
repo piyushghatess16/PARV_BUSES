@@ -36,6 +36,7 @@ public class PassengerServiceImpl implements PassengerService {
 	    	dto.setFirstName(entity.getFirstName());
 	    	dto.setLastName(entity.getLastName());
 	    	dto.setGender(entity.getGender());
+	    	dto.setId(entity.getId());
 	        
 	        dtoList.add(dto);
 	    }

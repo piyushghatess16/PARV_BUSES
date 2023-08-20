@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class SendBusDto {
 	
+	private long id;
 	private String from;
 	private String to;
 	private int cost;
