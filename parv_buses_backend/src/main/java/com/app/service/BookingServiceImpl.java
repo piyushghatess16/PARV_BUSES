@@ -105,11 +105,12 @@ public class BookingServiceImpl implements BookingService {
 	@Override
 	public ApiResponse cancelBookings(long bookingid) {
 		Bookings b=bookingDao.findById(bookingid).orElseThrow(()-> new RuntimeException("Booking Not Found"));
+		b.setUser(null);
 		//b.removeSeat(null); //Pending Work
-		BusDetails bus=busDao.findByBusNoAndDate(b.getBusNo(), b.getDate()).orElseThrow(()-> new RuntimeException("Bus Not Found"));
-		SeatAvailability s=seatAvailabilityDao.findByBusDetailsAndDate(bus, b.getDate());
-		s.setAvailable_seats(s.getAvailable_seats()-1);
-		bookingDao.delete(b);
+//		BusDetails bus=busDao.findByBusNoAndDate(b.getBusNo(), b.getDate()).orElseThrow(()-> new RuntimeException("Bus Not Found"));
+//		SeatAvailability s=seatAvailabilityDao.findByBusDetailsAndDate(bus, b.getDate());
+//		s.setAvailable_seats(s.getAvailable_seats()-1);
+//		bookingDao.delete(b);
 		return new ApiResponse("Booking Cancel");
 	}
 }
