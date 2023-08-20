@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +21,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Station extends Base{
+	
+	@NotBlank(message = "Invalid Station Name")
 	private String station_name;
 
     @OneToMany(mappedBy = "station_id_boarding")

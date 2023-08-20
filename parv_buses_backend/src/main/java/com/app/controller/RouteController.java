@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +20,7 @@ public class RouteController {
 	private RouteService routeService;
 	
 	@PostMapping("/addroute")
-	public ResponseEntity<?> addRoute(@RequestBody AddRouteDto ard){
+	public ResponseEntity<?> addRoute(@Valid @RequestBody AddRouteDto ard){
 		
 		return ResponseEntity.ok(routeService.addRoute(ard));
 	}

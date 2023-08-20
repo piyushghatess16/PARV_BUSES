@@ -1,5 +1,8 @@
 package com.app.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +14,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class SendBusDto {
 	
+	@NotBlank
 	private String from;
+	@NotBlank
 	private String to;
+	@NotNull
 	private int cost;
 	private int availableSeats;
 	private String duration;

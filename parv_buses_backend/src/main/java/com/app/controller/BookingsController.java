@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +25,7 @@ public class BookingsController {
     private BookingService bookingService;
 
     @PostMapping("/book")
-    public ResponseEntity<?> createBookings(@RequestBody  BookingsDto booking) {
+    public ResponseEntity<?> createBookings(@Valid @RequestBody  BookingsDto booking) {
         ApiResponse createdBooking = bookingService.createBooking(booking);
         return new ResponseEntity<>(createdBooking, HttpStatus.CREATED);
     }

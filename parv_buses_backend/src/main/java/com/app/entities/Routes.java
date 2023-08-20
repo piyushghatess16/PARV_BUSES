@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,7 +31,7 @@ public class Routes extends Base{
     @ManyToOne
   //  @JoinColumn(name = "station_id_destination")
     private Station station_id_destination;
-
+    @NotNull(message = "Please Enter Valid Distance")
     private double distance;
     
     @OneToMany(mappedBy = "route",cascade = CascadeType.ALL,orphanRemoval = true)

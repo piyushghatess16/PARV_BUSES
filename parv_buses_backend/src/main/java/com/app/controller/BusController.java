@@ -26,7 +26,7 @@ public class BusController {
 	private BusService busService;
 	
 	@PostMapping("/addbus/{routeid}")
-	public ResponseEntity<?> addBus(@RequestBody BusDetails abd,@PathVariable long routeid){
+	public ResponseEntity<?> addBus(@Valid @RequestBody BusDetails abd,@PathVariable long routeid){
 		
 		System.out.println(abd.toString());
 		return ResponseEntity.ok(busService.addBus(abd,routeid));
@@ -39,7 +39,7 @@ public class BusController {
 	}
 	
 	@PostMapping("/getbus")
-	public List<SendBusDto> getBus(@RequestBody  GetBusDto gbd) {
+	public List<SendBusDto> getBus(@RequestBody @Valid GetBusDto gbd) {
 //		System.out.println(gbd.toString());
 		
 		return busService.getBus(gbd);

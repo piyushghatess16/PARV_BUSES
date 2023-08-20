@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,10 +23,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Passenger extends Base{
-	
+	@NotBlank(message = "First Name Should not be Null")
 	private String firstName;
+	@NotBlank(message = "Last Name Should not be Null")
 	private String lastName;
+	@NotBlank(message = "please Enter correct Gender")
 	private String gender;
+	@Min(0)
+	@Max(80)
+	@NotNull
 	private int age;
 	
 	@ManyToOne

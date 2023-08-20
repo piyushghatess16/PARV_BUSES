@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +23,7 @@ public class UserController {
 	private UserService userService;
 	@PostMapping("/signup")
 	
-	public ResponseEntity<?> signUpUser(@RequestBody User user)
+	public ResponseEntity<?> signUpUser(@Valid @RequestBody User user)
 	{
 		ApiResponse resp=userService.signUpUser(user);
 		
@@ -29,7 +31,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public LoggedInUserData loginUser(@RequestBody LoginDto ld){
+	public LoggedInUserData loginUser(@Valid @RequestBody LoginDto ld){
 		
 		LoggedInUserData resp = userService.loginUser(ld);
 		
@@ -37,7 +39,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/changepassword")
-	public ResponseEntity<?> forgotPass(@RequestBody ChangePasswordDto pass){
+	public ResponseEntity<?> forgotPass(@Valid @RequestBody ChangePasswordDto pass){
 		
 		ApiResponse res = userService.ChangePassword(pass);
 		

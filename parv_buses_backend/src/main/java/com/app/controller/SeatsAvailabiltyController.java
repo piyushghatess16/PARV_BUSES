@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +20,7 @@ public class SeatsAvailabiltyController {
 	@Autowired
 	private SeatAvailabilityService seatAvailability;
 	@PostMapping("/seatavailable/{seatnos}")
-	public ResponseEntity<?> seatAvailable(@RequestBody SeatAvailabilityDto seats,@PathVariable int seatnos)
+	public ResponseEntity<?> seatAvailable(@RequestBody @Valid SeatAvailabilityDto seats,@PathVariable int seatnos)
 	{
 	   return ResponseEntity.ok(seatAvailability.deductseats(seats,seatnos));	
 	}

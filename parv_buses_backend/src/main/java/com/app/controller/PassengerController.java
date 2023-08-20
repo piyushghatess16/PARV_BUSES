@@ -2,6 +2,8 @@ package com.app.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,14 +26,14 @@ public class PassengerController {
 	private PassengerService passService;
 	
 	@PostMapping("/addpassenger/{userid}")
-	public String addPassenger(@RequestBody Passenger p,@PathVariable long userid) {
+	public String addPassenger(@Valid @RequestBody Passenger p,@PathVariable long userid) {
 		
 		return passService.addPassenger(p, userid);
 	
 	}
 	
 	@PostMapping("/removepassenger")
-	public String removePassenger(@RequestBody RemovePassengerDto rpd) {
+	public String removePassenger(@RequestBody @Valid RemovePassengerDto rpd) {
 		return passService.removePassenger(rpd.getUserid(), rpd.getPassengerid());
 	}
 	

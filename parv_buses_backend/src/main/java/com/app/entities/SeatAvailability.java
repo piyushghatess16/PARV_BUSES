@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +25,7 @@ public class SeatAvailability extends Base {
     @JoinColumn(name = "bus_details_id")
     private BusDetails busDetails;
    private LocalDate date;
+   @NotNull
    private int available_seats; 
 
 	
