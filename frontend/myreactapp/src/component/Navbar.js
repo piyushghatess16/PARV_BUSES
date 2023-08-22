@@ -8,15 +8,14 @@ import DeleteRoute from "./Admin/DeleteRoute";
 import AddStation from "./Admin/AddStation";
 import AddBus from "./Admin/AddBus";
 import DeleteBus from "./Admin/DeleteBus";
-import UserHome from "./UserHome"
+import AdminHome from "./Admin/AdminHome";
+import MyBookings from "./MyBookings";
 
 function Navbar() {
   var navigate = useNavigate();
 
   return (
-    <div
-      
-    >
+    <div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
           PARV BUSES
@@ -41,17 +40,17 @@ function Navbar() {
                 </a>
               </li>
             </Link>
-            <Link to="/deletebus">
+            <Link to="/adminhome">
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                Delete Bus</a>
+                Admin</a>
               </li>
             </Link>
 
-            <Link to="/addroute">
+            <Link to="/mybookings">
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                 Add Route
+                 My Bookings
                 </a>
               </li>
             </Link>
@@ -72,41 +71,51 @@ function Navbar() {
             </Link>
           </ul>
           <form class="form-inline my-2 my-lg-0">
-            <button
-
-              class="btn btn-outline-success my-2 my-sm-0"
-              type="submit">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
               LogIn
             </button>
           </form>
 
-          <li class="nav-item dropdown" style={{listStyle:"none"}}>
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">My Profile</a>
-          <a class="dropdown-item" href="#">Change Password</a>
-          {/* <div class="dropdown-divider"></div> */}
-          <a class="dropdown-item" href="#">Logout</a>
-        </div>
-      </li>
-
+          <li class="nav-item dropdown" style={{ listStyle: "none" }}>
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false">
+              Account
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">
+                My Profile
+              </a>
+              <a class="dropdown-item" href="#">
+                Change Password
+              </a>
+              {/* <div class="dropdown-divider"></div> */}
+              <a class="dropdown-item" href="#">
+                Logout
+              </a>
+            </div>
+            </li>
         </div>
       </nav>
 
       <Routes>
-        <Route exact path="/" Component={UserHome}></Route>
-        <Route exact path="/register" Component={Signup}></Route>
-        <Route exact path="/addroute" Component={AddRoute}></Route>
-        <Route exact path="/deletebus" Component={DeleteBus}></Route>
+        <Route exact path="/" Component={Login}></Route>
         <Route exact path="/login" Component={Login}></Route>
+        <Route exact path="/signup" Component={Signup}></Route>
+        <Route exact path="/addbus" Component={AddBus}></Route>
+        <Route exact path="/adminhome" Component={AdminHome}></Route>
+        <Route exact path="/deletebus" Component={DeleteBus}></Route>
+        <Route exact path="/addroute" Component={AddRoute}></Route>
+        <Route exact path="/deleteroute" Component={DeleteRoute}></Route>
+        <Route exact path="/addstation" Component={AddStation}></Route>
+        <Route exact path="/mybookings" Component={MyBookings}></Route>
 
-
-        {/* <Route exact path="/myQuotes" Component={myQuotes}></Route>
-        <Route exact path="/addquote" Component={AddQuote}></Route>
-        <Route exact path="/mineQuotes" Component={MineQuotes}></Route>
-        <Route exact path="/" Component={SignUp}></Route> */}
+        
       </Routes>
     </div>
   );
